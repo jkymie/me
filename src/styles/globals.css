@@ -1,19 +1,92 @@
 @import "tailwindcss";
 
+/* ---- Fundo quadriculado ---- */
 :root {
-  --background: #ffffff;
+  --background: #fbfbf5; 
   --foreground: #171717;
+  --grid-line: rgba(60, 90, 150, 0.14);
+  --grid-size: 50px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --grid-line: rgba(255, 255, 255, 0.06);
   }
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
+  /* Folha de papel quadriculada, feita só com CSS (sem imagem). */
+  background-color: var(--background);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  min-height: 100vh;
+}
+
+/* ---- Intro "hello" estilo Apple ---- */
+.hello-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.hello-intro--leaving {
+  opacity: 0;
+}
+
+.hello-intro__stage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+.hello-intro__word {
+  font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.75rem, 7vw, 4.5rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+  text-align: center;
+  /* Cada idioma entra com um fade rápido (a key troca no React reinicia a animação). */
+  animation: hello-fade 0.12s ease-out both;
+}
+
+@keyframes hello-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.12em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hello-intro__word--jp {
+  font-family: var(--font-jp), sans-serif;
+}
+
+.hello-intro__word--kr {
+  font-family: var(--font-kr), sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hello-intro__word {
+    animation: none;
+    opacity: 1;
+  }
 }
