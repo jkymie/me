@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, Kosugi_Maru, Chiron_GoRound_TC } from "next/font/google";
+import { Nunito, Kosugi_Maru } from "next/font/google";
 import { HelloIntro } from "@/components/HelloIntro";
 import "../styles/globals.css";
 
