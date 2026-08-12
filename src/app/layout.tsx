@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { Nunito, Kosugi_Maru } from "next/font/google";
+import { Montserrat, Inter, Kosugi_Maru } from "next/font/google";
 import { HelloIntro } from "@/components/HelloIntro";
 import "../styles/globals.css";
 
-const nunito = Nunito({
+// Montserrat aproxima a Circular (fonte do Spotify) para os títulos grandes.
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  variable: "--font-display",
   display: "swap",
 });
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+// Usada só pelos cumprimentos em japonês/coreano da intro.
 const kosugiMaru = Kosugi_Maru({
   subsets: ["latin"],
   weight: "400",
@@ -17,8 +25,9 @@ const kosugiMaru = Kosugi_Maru({
 });
 
 export const metadata: Metadata = {
-  title: "Julia Okada",
-  description: "Computer Science student and developer.",
+  title: "This Is Julia Okada",
+  description:
+    "Portfólio de Julia Okada — estudante de Ciência da Computação e desenvolvedora full-stack.",
 };
 
 export default function RootLayout({
@@ -28,10 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${nunito.variable} ${kosugiMaru.variable}`}
+      lang="pt-BR"
+      className={`${montserrat.variable} ${inter.variable} ${kosugiMaru.variable}`}
     >
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <HelloIntro />
         {children}
       </body>
