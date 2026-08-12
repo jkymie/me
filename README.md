@@ -30,6 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 | `npm run dev`   | Start the development server             |
 | `npm run build` | Create an optimized production build     |
 | `npm run start` | Run the production build locally         |
+| `npm run lint`  | Run ESLint to check for code issues      |
 
 ## Project Structure
 
